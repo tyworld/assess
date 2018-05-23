@@ -1450,3 +1450,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   font-size: 13px;
   color: #ddd;
 }
+
+.carousel-content p{
+  width:400px!important;
+}
