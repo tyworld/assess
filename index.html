@@ -218,7 +218,7 @@
                                 员工
                             </div>
                             <div class="form-group col-md-5">
-                                <input type="text" class="form-control" id="userId" placeholder="填写员工姓名"/>
+                                <input type="text" class="form-control" id="userId" placeholder="填写姓名即可查询到员工考核信息"/>
                             </div>
                             <div class="form-group col-md-1">月份</div>
                             <div class="form-group col-md-5">
@@ -439,12 +439,14 @@
                 var gt_sum = 0;
                 var xx_sum = 0;
                 var td_sum = 0;
+                var count=0;
                 for (var i = 0; i < len; i++) {
                     if (resultObj.value.split('|-')[i] == $('#userId').val()) {
                         zl_sum += parseInt(resultObj.zl.split('|-')[i]);
                         gt_sum += parseInt(resultObj.gt.split('|-')[i]);
                         xx_sum += parseInt(resultObj.xx.split('|-')[i]);
                         td_sum += parseInt(resultObj.td.split('|-')[i]);
+                        count++;
                     }
 
                 }
@@ -462,7 +464,7 @@
                         {
                             data: [
                                 {
-                                    value: [parseInt(zl_sum / len), parseInt(gt_sum / len), parseInt(xx_sum / len), parseInt(td_sum / len)],
+                                    value: [parseInt(zl_sum / count), parseInt(gt_sum / count), parseInt(xx_sum / count), parseInt(td_sum / count)],
                                     name: $('#userId').val()
                                 }
                             ]
@@ -486,16 +488,25 @@
             var gt = $('#gt').val();
             var xx = $('#xx').val();
             var td = $('#td').val();
-            /*if (xfType == '') {
-                layer.msg('消费类型不能为空');
+            if (userId == '') {
+                layer.msg('姓名不能为空');
                 return;
-            } else if (money == '') {
-                layer.msg('消费金额不能为空');
+            } else if (month == '') {
+                layer.msg('月份不能为空');
                 return;
-            } else if (xfDate == '') {
-                layer.msg('消费时间不能为空');
+            } else if (zl == '') {
+                layer.msg('任务质量不能为空');
                 return;
-            }*/
+            }else if (gt == '') {
+                layer.msg('沟通协调不能为空');
+                return;
+            }else if (xx == '') {
+                layer.msg('学习能力不能为空');
+                return;
+            }else if (td == '') {
+                layer.msg('工作态度不能为空');
+                return;
+            }
             var to = dappAddress;
             var value = "0";
             var callFunction = "save"
